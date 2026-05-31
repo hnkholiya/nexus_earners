@@ -1,81 +1,379 @@
 import './style.css'
+import AOS from 'aos'
+import { CountUp } from 'countup.js'
+import Swiper from 'swiper'
+import { Pagination } from 'swiper/modules'
 
-document.querySelector('#app').innerHTML = `
-<div class="bg-slate-950 text-white min-h-screen">
+// Initialize AOS (Animate On Scroll)
+AOS.init({
+  duration: 1000,
+  easing: 'ease-in-out',
+  once: true,
+  offset: 100
+})
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h2 class="text-2xl font-bold text-cyan-400">
-        Nexus Earner's
-      </h2>
+// ========== SCROLL PROGRESS BAR ==========
+function updateScrollProgress() {
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+  const scrolled = window.scrollY
+  const scrollPercent = scrollHeight > 0 ? (scrolled / scrollHeight) * 100 : 0
+  document.getElementById('scrollProgress').style.width = scrollPercent + '%'
+}
 
-      <div class="hidden md:flex gap-8">
-        <a href="#home" class="hover:text-cyan-400">Home</a>
-        <a href="#about" class="hover:text-cyan-400">About</a>
-        <a href="#earning" class="hover:text-cyan-400">Earning Methods</a>
-        <a href="#faq" class="hover:text-cyan-400">FAQ</a>
-      </div>
-    </div>
-  </nav>
+window.addEventListener('scroll', updateScrollProgress)
 
-  <!-- Hero -->
-  <section id="home" class="pt-40 pb-24 px-6">
-    <div class="max-w-5xl mx-auto text-center">
+// ========== MOBILE MENU TOGGLE ==========
+const mobileMenuBtn = document.getElementById('mobileMenuBtn')
+const mobileMenu = document.getElementById('mobileMenu')
 
-      <div class="inline-block px-5 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
-        🚀 India's Growing Free Earning Community
-      </div>
+if (mobileMenuBtn && mobileMenu) {
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden')
+  })
 
-      <h1 class="text-5xl md:text-7xl font-bold mt-8">
-        Earn Online With
-        <span class="text-cyan-400">Nexus Earner's</span>
-      </h1>
+  // Close menu when a link is clicked
+  const mobileMenuLinks = mobileMenu.querySelectorAll('a')
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden')
+    })
+  })
+}
 
-      <p class="mt-8 text-xl text-slate-400 max-w-3xl mx-auto">
-        Join a community helping people earn through Crypto Airdrops,
-        Affiliate Marketing, Refer & Earn Programs, Earning Apps and
-        other online opportunities.
-      </p>
+// ========== SMOOTH SCROLL FOR ANCHOR LINKS ==========
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault()
+    const target = document.querySelector(this.getAttribute('href'))
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  })
+})
 
-      <div class="flex flex-wrap justify-center gap-4 mt-10">
-        <button class="bg-cyan-500 hover:bg-cyan-600 px-8 py-4 rounded-xl font-semibold">
-          Join Community
-        </button>
+// ========== NAVBAR STYLING ON SCROLL ==========
+const navbar = document.getElementById('navbar')
+let lastScrollTop = 0
 
-        <button class="border border-slate-700 px-8 py-4 rounded-xl hover:border-cyan-400">
-          Learn More
-        </button>
-      </div>
-    </div>
-  </section>
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY
+  
+  if (scrollTop > 100) {
+    navbar.classList.add('shadow-lg')
+  } else {
+    navbar.classList.remove('shadow-lg')
+  }
+  
+  lastScrollTop = scrollTop
+})
 
-  <!-- Stats -->
-  <section class="px-6 pb-24">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-6">
+// ========== COUNT UP ANIMATIONS ==========
+function initCountUpAnimations() {
+  const observerOptions = {
+    threshold: 0.5
+  }
 
-      <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-center">
-        <h3 class="text-4xl font-bold text-cyan-400">₹300K+</h3>
-        <p class="text-slate-400 mt-2">Community Earnings</p>
-      </div>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = 'true'
+        
+        if (entry.target.id === 'earnings-count') {
+          const countUp = new CountUp('earnings-count', 300000, {
+            duration: 2,
+            separator: ','
+          })
+          countUp.start()
+        }
+        
+        if (entry.target.id === 'members-count') {
+          const countUp = new CountUp('members-count', 1000, {
+            duration: 2,
+            separator: ','
+          })
+          countUp.start()
+        }
+        
+        if (entry.target.id === 'opportunities-count') {
+          const countUp = new CountUp('opportunities-count', 500, {
+            duration: 2,
+            separator: ','
+          })
+          countUp.start()
+        }
+      }
+    })
+  }, observerOptions)
 
-      <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-center">
-        <h3 class="text-4xl font-bold text-cyan-400">1000+</h3>
-        <p class="text-slate-400 mt-2">Members</p>
-      </div>
+  document.querySelectorAll('[id*="count"]').forEach(element => {
+    observer.observe(element)
+  })
+}
 
-      <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-center">
-        <h3 class="text-4xl font-bold text-cyan-400">500+</h3>
-        <p class="text-slate-400 mt-2">Opportunities Shared</p>
-      </div>
+initCountUpAnimations()
 
-      <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-center">
-        <h3 class="text-4xl font-bold text-cyan-400">100%</h3>
-        <p class="text-slate-400 mt-2">Free To Join</p>
-      </div>
+// ========== TESTIMONIAL SLIDER ==========
+function initTestimonialSlider() {
+  const swiperEl = document.querySelector('.testimonial-swiper')
+  
+  if (swiperEl) {
+    Swiper.use([Pagination])
+    
+    new Swiper(swiperEl, {
+      modules: [Pagination],
+      slidesPerView: 1,
+      spaceBetween: 24,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 24
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 24
+        }
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      effect: 'slide',
+      speed: 500
+    })
+  }
+}
 
-    </div>
-  </section>
+initTestimonialSlider()
 
-</div>
-`
+// ========== FAQ ACCORDION ==========
+function initFAQAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item')
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question')
+    
+    if (question) {
+      question.addEventListener('click', () => {
+        // Close other items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active')
+          }
+        })
+        
+        // Toggle current item
+        item.classList.toggle('active')
+      })
+    }
+  })
+}
+
+initFAQAccordion()
+
+// ========== BUTTON INTERACTIONS ==========
+function addButtonAnimations() {
+  const buttons = document.querySelectorAll('button')
+  
+  buttons.forEach(button => {
+    button.addEventListener('mouseover', function() {
+      this.style.transform = 'translateY(-2px)'
+    })
+    
+    button.addEventListener('mouseout', function() {
+      this.style.transform = 'translateY(0)'
+    })
+    
+    button.addEventListener('click', function(e) {
+      // Create ripple effect
+      const ripple = document.createElement('span')
+      ripple.style.position = 'absolute'
+      ripple.style.width = '20px'
+      ripple.style.height = '20px'
+      ripple.style.background = 'rgba(255, 255, 255, 0.5)'
+      ripple.style.borderRadius = '50%'
+      ripple.style.transform = 'scale(0)'
+      ripple.style.animation = 'scaleRipple 0.6s ease-out'
+      
+      const rect = this.getBoundingClientRect()
+      ripple.style.left = (e.clientX - rect.left - 10) + 'px'
+      ripple.style.top = (e.clientY - rect.top - 10) + 'px'
+    })
+  })
+}
+
+addButtonAnimations()
+
+// ========== PARALLAX EFFECT ==========
+function addParallaxEffect() {
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY
+    const parallaxElements = document.querySelectorAll('[data-parallax]')
+    
+    parallaxElements.forEach(element => {
+      const speed = element.getAttribute('data-parallax') || 0.5
+      element.style.transform = `translateY(${scrolled * speed}px)`
+    })
+  })
+}
+
+addParallaxEffect()
+
+// ========== CURSOR GLOW EFFECT ==========
+function addCursorGlowEffect() {
+  const mouseX = { value: 0 }
+  const mouseY = { value: 0 }
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX.value = e.clientX
+    mouseY.value = e.clientY
+  })
+}
+
+addCursorGlowEffect()
+
+// ========== ACTIVE NAV LINK HIGHLIGHTING ==========
+function updateActiveNavLink() {
+  const sections = document.querySelectorAll('section[id]')
+  const navLinks = document.querySelectorAll('.nav-link')
+  
+  window.addEventListener('scroll', () => {
+    let current = ''
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop
+      const sectionHeight = section.clientHeight
+      
+      if (window.scrollY >= sectionTop - 200) {
+        current = section.getAttribute('id')
+      }
+    })
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active')
+      const href = link.getAttribute('href')
+      
+      if (href === `#${current}`) {
+        link.classList.add('text-cyan-400')
+      } else {
+        link.classList.remove('text-cyan-400')
+      }
+    })
+  })
+}
+
+updateActiveNavLink()
+
+// ========== LOADING ANIMATION ==========
+function addLoadingAnimation() {
+  window.addEventListener('load', () => {
+    document.body.style.opacity = '1'
+  })
+  
+  document.body.style.opacity = '0'
+  document.body.style.transition = 'opacity 0.5s ease-in'
+}
+
+addLoadingAnimation()
+
+// ========== SCROLL REVEAL EFFECTS ==========
+function revealOnScroll() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  }
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1'
+        entry.target.style.transform = 'translateY(0)'
+      }
+    })
+  }, observerOptions)
+  
+  document.querySelectorAll('.reveal').forEach(element => {
+    element.style.opacity = '0'
+    element.style.transform = 'translateY(20px)'
+    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease'
+    observer.observe(element)
+  })
+}
+
+revealOnScroll()
+
+// ========== ANTI-SPAM LINK HANDLER ==========
+function setupExternalLinks() {
+  const links = document.querySelectorAll('a[href^="http"]')
+  
+  links.forEach(link => {
+    link.setAttribute('target', '_blank')
+    link.setAttribute('rel', 'noopener noreferrer')
+  })
+}
+
+setupExternalLinks()
+
+// ========== KEYBOARD ACCESSIBILITY ==========
+function addKeyboardAccessibility() {
+  document.addEventListener('keydown', (e) => {
+    // Escape key closes mobile menu
+    if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.add('hidden')
+    }
+    
+    // Tab key for focus management
+    if (e.key === 'Tab') {
+      document.body.classList.add('using-keyboard')
+    }
+  })
+  
+  document.addEventListener('mousedown', () => {
+    document.body.classList.remove('using-keyboard')
+  })
+}
+
+addKeyboardAccessibility()
+
+// ========== PERFORMANCE OPTIMIZATION ==========
+// Lazy load images
+if ('IntersectionObserver' in window) {
+  const images = document.querySelectorAll('img[data-lazy]')
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target
+        img.src = img.getAttribute('data-lazy')
+        img.removeAttribute('data-lazy')
+        imageObserver.unobserve(img)
+      }
+    })
+  })
+  
+  images.forEach(img => imageObserver.observe(img))
+}
+
+// ========== CUSTOM EVENTS ==========
+// Create and dispatch custom event for page load
+const pageLoadEvent = new CustomEvent('pageLoaded', {
+  detail: { timestamp: new Date() }
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.dispatchEvent(pageLoadEvent)
+})
+
+// ========== INITIALIZATION ==========
+document.addEventListener('DOMContentLoaded', () => {
+  AOS.refresh()
+})
+
+console.log('✨ Nexus Earner\'s Website Loaded Successfully!')
+console.log('🚀 Ready to help people earn online!')

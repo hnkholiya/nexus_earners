@@ -1,13 +1,676 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nexus-earners</title>
-  </head>
-  <body>
-    <div id="app"></div>
+    <meta name="description" content="Nexus Earner's - Free online earning community helping people earn through crypto airdrops, affiliate marketing, and more." />
+    <meta name="keywords" content="earn online, free opportunities, crypto airdrops, affiliate marketing, online income" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <title>Nexus Earner's - Free Online Earning Community</title>
+</head>
+<body class="bg-[#020617] text-white overflow-x-hidden">
+    <!-- Scroll Progress Bar -->
+    <div id="scrollProgress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 z-50"></div>
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 right-1/3 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 4s;"></div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#020617]/50"></div>
+    </div>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav id="navbar" class="sticky top-0 z-40 transition-all duration-300">
+        <div class="backdrop-blur-md bg-gradient-to-r from-[#0f172a]/70 to-[#1e1b4b]/70 border-b border-cyan-500/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-2 group cursor-pointer" data-aos="fade-right">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-lg blur opacity-50 group-hover:opacity-100 transition duration-300"></div>
+                            <div class="relative bg-[#020617] px-3 py-2 rounded-lg">
+                                <i class="fas fa-rocket text-cyan-400"></i>
+                            </div>
+                        </div>
+                        <span class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Nexus</span>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#home" class="nav-link">Home</a>
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#earnings" class="nav-link">Earnings</a>
+                        <a href="#opportunities" class="nav-link">Opportunities</a>
+                        <a href="#testimonials" class="nav-link">Testimonials</a>
+                        <a href="#faq" class="nav-link">FAQ</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden">
+                        <button id="mobileMenuBtn" class="text-cyan-400 hover:text-purple-400 transition">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <button class="hidden md:block px-6 py-2 bg-gradient-to-r from-cyan-400 to-purple-500 text-[#020617] font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 transform hover:scale-105">
+                        Join Community
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden fixed top-20 left-0 right-0 bg-gradient-to-b from-[#0f172a] to-[#1e1b4b] border-b border-cyan-500/20 md:hidden z-30">
+        <div class="px-4 py-4 space-y-3">
+            <a href="#home" class="block px-4 py-2 text-cyan-400 hover:text-purple-400">Home</a>
+            <a href="#about" class="block px-4 py-2 text-cyan-400 hover:text-purple-400">About</a>
+            <a href="#earnings" class="block px-4 py-2 text-cyan-400 hover:text-purple-400">Earnings</a>
+            <a href="#opportunities" class="block px-4 py-2 text-cyan-400 hover:text-purple-400">Opportunities</a>
+            <a href="#testimonials" class="block px-4 py-2 text-cyan-400 hover:text-purple-400">Testimonials</a>
+            <a href="#faq" class="block px-4 py-2 text-cyan-400 hover:text-purple-400">FAQ</a>
+            <a href="#contact" class="block px-4 py-2 text-cyan-400 hover:text-purple-400">Contact</a>
+            <button class="w-full px-4 py-2 bg-gradient-to-r from-cyan-400 to-purple-500 text-[#020617] font-bold rounded-lg">
+                Join Community
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 pb-20 px-4 relative">
+        <div class="absolute inset-0 grid grid-cols-12 gap-4 opacity-5 pointer-events-none">
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+            <div class="col-span-1"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <!-- Left Content -->
+            <div>
+                <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight" data-aos="fade-up">
+                    Empowering People To
+                    <span class="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400 bg-clip-text text-transparent"> Earn Online</span>
+                    Without Investment
+                </h1>
+                <p class="text-lg text-slate-300 mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Nexus Earner's helps people earn through Crypto Airdrops, Affiliate Marketing, Refer & Earn Programs, Earning Apps and Online Opportunities.
+                </p>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-4 mb-8" data-aos="fade-up" data-aos-delay="400">
+                    <div class="glass-card p-4 text-center">
+                        <div class="text-2xl font-bold text-cyan-400">₹300K+</div>
+                        <p class="text-sm text-slate-400">Community Earnings</p>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <div class="text-2xl font-bold text-purple-400">1000+</div>
+                        <p class="text-sm text-slate-400">Members</p>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <div class="text-2xl font-bold text-pink-400">500+</div>
+                        <p class="text-sm text-slate-400">Opportunities</p>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="600">
+                    <button class="px-8 py-3 bg-gradient-to-r from-cyan-400 to-cyan-500 text-[#020617] font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-play mr-2"></i> Join Community
+                    </button>
+                    <button class="px-8 py-3 border-2 border-purple-500 text-purple-400 font-bold rounded-lg hover:bg-purple-500/10 transition-all duration-300">
+                        <i class="fas fa-search mr-2"></i> Explore
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Visual -->
+            <div class="relative h-96 hidden lg:block" data-aos="fade-left">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl blur-2xl"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="text-6xl mb-4">
+                            <i class="fas fa-chart-line text-cyan-400 animate-bounce" style="animation-delay: 0s;"></i>
+                        </div>
+                        <div class="glass-card p-6 w-80">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-sm text-slate-400">Portfolio Value</span>
+                                <span class="text-green-400 text-xs">+12.5%</span>
+                            </div>
+                            <div class="text-2xl font-bold text-cyan-400 mb-4">₹3,45,000</div>
+                            <div class="flex space-x-2 h-16 items-end">
+                                <div class="flex-1 bg-gradient-to-t from-cyan-400/50 to-cyan-400/20 rounded h-6 animate-pulse"></div>
+                                <div class="flex-1 bg-gradient-to-t from-purple-400/50 to-purple-400/20 rounded h-10 animate-pulse" style="animation-delay: 0.2s;"></div>
+                                <div class="flex-1 bg-gradient-to-t from-cyan-400/50 to-cyan-400/20 rounded h-8 animate-pulse" style="animation-delay: 0.4s;"></div>
+                                <div class="flex-1 bg-gradient-to-t from-purple-400/50 to-purple-400/20 rounded h-12 animate-pulse" style="animation-delay: 0.6s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Icons -->
+        <div class="absolute top-20 right-10 text-4xl text-cyan-400 opacity-10 animate-float">
+            <i class="fas fa-bitcoin"></i>
+        </div>
+        <div class="absolute bottom-20 left-10 text-4xl text-purple-400 opacity-10 animate-float" style="animation-delay: 2s;">
+            <i class="fas fa-ethereum"></i>
+        </div>
+    </section>
+
+    <!-- ==================== TRUST INDICATORS ==================== -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="trust-badge" data-aos="zoom-in">
+                    <i class="fas fa-check-circle text-2xl mb-2"></i>
+                    <p>100% Free</p>
+                </div>
+                <div class="trust-badge" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-shield-alt text-2xl mb-2"></i>
+                    <p>No Investment</p>
+                </div>
+                <div class="trust-badge" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-users text-2xl mb-2"></i>
+                    <p>Community</p>
+                </div>
+                <div class="trust-badge" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-verified text-2xl mb-2"></i>
+                    <p>Verified</p>
+                </div>
+                <div class="trust-badge" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-graduation-cap text-2xl mb-2"></i>
+                    <p>Beginner</p>
+                </div>
+                <div class="trust-badge" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fas fa-star text-2xl mb-2"></i>
+                    <p>Real Earnings</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section id="about" class="py-24 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-center mb-12" data-aos="fade-up">
+                About <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Nexus Earner's</span>
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="relative h-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl blur-2xl"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-6xl">
+                            <i class="fas fa-handshake text-cyan-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <p class="text-lg text-slate-300 mb-6 leading-relaxed">
+                        Nexus Earner's is a free earning community helping people generate income online through legitimate opportunities without any upfront investment.
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="glass-card p-6">
+                            <h3 class="text-xl font-bold text-cyan-400 mb-2"><i class="fas fa-user mr-2"></i> Founded By</h3>
+                            <p class="text-slate-300">Harshil Kholiya - Passionate about empowering people financially.</p>
+                        </div>
+                        <div class="glass-card p-6">
+                            <h3 class="text-xl font-bold text-purple-400 mb-2"><i class="fas fa-bullseye mr-2"></i> Our Mission</h3>
+                            <p class="text-slate-300">Help individuals earn online and achieve financial growth through legitimate methods.</p>
+                        </div>
+                        <div class="glass-card p-6">
+                            <h3 class="text-xl font-bold text-pink-400 mb-2"><i class="fas fa-eye mr-2"></i> Our Vision</h3>
+                            <p class="text-slate-300">Build India's most trusted free earning community.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EARNING METHODS ==================== -->
+    <section id="earnings" class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-center mb-4" data-aos="fade-up">
+                Multiple <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Earning Methods</span>
+            </h2>
+            <p class="text-center text-slate-400 mb-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Choose from various legitimate earning opportunities tailored to your skills and interests.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card Template (repeated 8 times) -->
+                <div class="earning-card" data-aos="zoom-in">
+                    <div class="card-icon text-4xl mb-4">
+                        <i class="fab fa-bitcoin"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Crypto Airdrops</h3>
+                    <p class="text-slate-400 text-sm mb-4">Earn free cryptocurrency through verified airdrops and bounties.</p>
+                    <div class="card-border"></div>
+                </div>
+
+                <div class="earning-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card-icon text-4xl mb-4">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Affiliate Marketing</h3>
+                    <p class="text-slate-400 text-sm mb-4">Earn commissions by promoting products and services.</p>
+                    <div class="card-border"></div>
+                </div>
+
+                <div class="earning-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card-icon text-4xl mb-4">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Refer & Earn</h3>
+                    <p class="text-slate-400 text-sm mb-4">Get rewards for every friend you refer to our community.</p>
+                    <div class="card-border"></div>
+                </div>
+
+                <div class="earning-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card-icon text-4xl mb-4">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Earning Apps</h3>
+                    <p class="text-slate-400 text-sm mb-4">Download and use apps that reward you for various activities.</p>
+                    <div class="card-border"></div>
+                </div>
+
+                <div class="earning-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card-icon text-4xl mb-4">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Freelancing</h3>
+                    <p class="text-slate-400 text-sm mb-4">Showcase your skills and earn money from clients worldwide.</p>
+                    <div class="card-border"></div>
+                </div>
+
+                <div class="earning-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="card-icon text-4xl mb-4">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Online Tasks</h3>
+                    <p class="text-slate-400 text-sm mb-4">Complete simple online tasks and earn money instantly.</p>
+                    <div class="card-border"></div>
+                </div>
+
+                <div class="earning-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="card-icon text-4xl mb-4">
+                        <i class="fas fa-pen"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Content Creation</h3>
+                    <p class="text-slate-400 text-sm mb-4">Monetize your content on YouTube, blogs, and social media.</p>
+                    <div class="card-border"></div>
+                </div>
+
+                <div class="earning-card" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="card-icon text-4xl mb-4">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Digital Opportunities</h3>
+                    <p class="text-slate-400 text-sm mb-4">Explore emerging digital opportunities and online markets.</p>
+                    <div class="card-border"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== COMMUNITY ACHIEVEMENTS ==================== -->
+    <section id="opportunities" class="py-24 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-center mb-16" data-aos="fade-up">
+                Community <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Achievements</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="achievement-card" data-aos="zoom-in">
+                    <div class="text-5xl font-bold mb-2">
+                        <span id="earnings-count" class="text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text">0</span>
+                        <span class="text-cyan-400">+</span>
+                    </div>
+                    <p class="text-slate-400 text-lg">Total Earnings</p>
+                    <p class="text-sm text-slate-500 mt-2">₹300,000 Generated</p>
+                </div>
+
+                <div class="achievement-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-5xl font-bold mb-2">
+                        <span id="members-count" class="text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">0</span>
+                        <span class="text-purple-400">+</span>
+                    </div>
+                    <p class="text-slate-400 text-lg">Community Members</p>
+                    <p class="text-sm text-slate-500 mt-2">Growing Daily</p>
+                </div>
+
+                <div class="achievement-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-5xl font-bold mb-2">
+                        <span id="opportunities-count" class="text-transparent bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text">0</span>
+                        <span class="text-pink-400">+</span>
+                    </div>
+                    <p class="text-slate-400 text-lg">Opportunities Shared</p>
+                    <p class="text-sm text-slate-500 mt-2">Verified & Tested</p>
+                </div>
+
+                <div class="achievement-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-5xl font-bold mb-2">
+                        <span id="free-count" class="text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text">100</span>
+                        <span class="text-emerald-400">%</span>
+                    </div>
+                    <p class="text-slate-400 text-lg">Free Access</p>
+                    <p class="text-sm text-slate-500 mt-2">No Hidden Charges</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== WHY CHOOSE US ==================== -->
+    <section class="py-24 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-center mb-16" data-aos="fade-up">
+                Why Choose <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Nexus Earner's</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Zero Investment</h3>
+                    <p class="text-slate-400">Start earning without spending any money upfront.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Daily Opportunities</h3>
+                    <p class="text-slate-400">Fresh earning opportunities updated every single day.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Community Support</h3>
+                    <p class="text-slate-400">Get help and guidance from experienced community members.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-verified"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Trusted Methods</h3>
+                    <p class="text-slate-400">Only legitimate and verified earning opportunities.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Step-by-Step Guide</h3>
+                    <p class="text-slate-400">Detailed guides for every earning opportunity.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Fast Updates</h3>
+                    <p class="text-slate-400">Latest opportunities delivered instantly to members.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Beginner Friendly</h3>
+                    <p class="text-slate-400">No experience needed, perfect for everyone.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="700">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Real Results</h3>
+                    <p class="text-slate-400">Proven earnings from thousands of members.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- ==================== HOW IT WORKS ==================== -->
+    <section class="py-24 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-center mb-16" data-aos="fade-up">
+                How It <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Works</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                <!-- Connection Line (Desktop only) -->
+                <div class="hidden lg:block absolute top-1/4 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400 -z-10"></div>
+
+                <div class="step-card" data-aos="zoom-in">
+                    <div class="step-number">1</div>
+                    <h3 class="text-2xl font-bold mb-3">Join Community</h3>
+                    <p class="text-slate-400">Sign up for free and become part of our growing earning community.</p>
+                </div>
+
+                <div class="step-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h3 class="text-2xl font-bold mb-3">Learn Opportunities</h3>
+                    <p class="text-slate-400">Explore detailed guides and tutorials for various earning methods.</p>
+                </div>
+
+                <div class="step-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="step-number">3</div>
+                    <h3 class="text-2xl font-bold mb-3">Complete Tasks</h3>
+                    <p class="text-slate-400">Start with simple tasks and gradually unlock premium opportunities.</p>
+                </div>
+
+                <div class="step-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="step-number">4</div>
+                    <h3 class="text-2xl font-bold mb-3">Earn Rewards</h3>
+                    <p class="text-slate-400">Withdraw your earnings and celebrate your success with us.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section id="faq" class="py-24 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-center mb-16" data-aos="fade-up">
+                Frequently Asked <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Questions</span>
+            </h2>
+
+            <div class="space-y-4">
+                <div class="faq-item" data-aos="fade-up">
+                    <button class="faq-question">
+                        <span><i class="fas fa-dollar-sign mr-3 text-cyan-400"></i> Is Nexus Earner's Free?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, Nexus Earner's is completely free to join. There are no membership fees, no hidden charges, and no upfront costs. You can start earning immediately after signing up.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-question">
+                        <span><i class="fas fa-credit-card mr-3 text-purple-400"></i> Do I Need Investment?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No investment is required. Nexus Earner's focuses on helping people earn through legitimate methods that don't require any money upfront. All opportunities are 100% investment-free.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-question">
+                        <span><i class="fas fa-graduation-cap mr-3 text-pink-400"></i> Can Students Join?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! Students are highly encouraged to join. The earning opportunities are flexible and can be done in your spare time without affecting your studies.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <button class="faq-question">
+                        <span><i class="fas fa-rocket mr-3 text-emerald-400"></i> How Do I Start?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Simply click the "Join Community" button and complete the registration process. It takes just 2 minutes. You'll get instant access to all opportunities and community resources.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <button class="faq-question">
+                        <span><i class="fas fa-list mr-3 text-cyan-400"></i> What Opportunities Are Shared?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We share diverse opportunities including crypto airdrops, affiliate programs, refer & earn schemes, earning apps, freelancing gigs, online tasks, content creation, and various digital opportunities.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
+                    <button class="faq-question">
+                        <span><i class="fas fa-star mr-3 text-pink-400"></i> Is It Beginner Friendly?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Nexus Earner's is designed for beginners. We provide step-by-step guides, detailed tutorials, and community support to help you get started easily.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FINAL CTA ==================== -->
+    <section class="py-24 px-4 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-3xl blur-2xl -z-10"></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-6xl font-bold mb-6" data-aos="fade-up">
+                Start Your Online
+                <span class="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400 bg-clip-text text-transparent"> Earning Journey</span>
+                Today
+            </h2>
+            <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Join thousands of community members earning real money through legitimate online opportunities. It's free, it's easy, and it's your time to shine.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <button class="px-8 py-4 bg-gradient-to-r from-cyan-400 to-cyan-500 text-[#020617] font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 transform hover:scale-105 text-lg">
+                    <i class="fas fa-play mr-2"></i> Join Community Now
+                </button>
+                <button class="px-8 py-4 border-2 border-purple-500 text-purple-400 font-bold rounded-lg hover:bg-purple-500/10 transition-all duration-300 text-lg">
+                    <i class="fas fa-envelope mr-2"></i> Contact Us
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="border-t border-cyan-500/20 py-16 px-4 backdrop-blur-md bg-gradient-to-t from-[#0f172a]/50 to-transparent">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-cyan-400">Company</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#about" class="hover:text-cyan-400 transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Press</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-purple-400">Resources</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="hover:text-purple-400 transition">Documentation</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">API Docs</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Community -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-pink-400">Community</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="hover:text-pink-400 transition">Forum</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Discord</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Events</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Meetups</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-emerald-400">Support</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#" class="hover:text-emerald-400 transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="border-t border-slate-700 pt-8 pb-8">
+                <div class="flex justify-center items-center space-x-6 mb-8">
+                    <a href="#" class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-purple-500 flex items-center justify-center hover:scale-110 transition">
+                        <i class="fab fa-telegram text-white"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center hover:scale-110 transition">
+                        <i class="fab fa-instagram text-white"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-cyan-400 flex items-center justify-center hover:scale-110 transition">
+                        <i class="fab fa-youtube text-white"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-purple-400 flex items-center justify-center hover:scale-110 transition">
+                        <i class="fab fa-whatsapp text-white"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-slate-700 pt-8 text-center">
+                <p class="text-slate-400 text-sm mb-2">© 2024 Nexus Earner's. All Rights Reserved.</p>
+                <p class="text-slate-500 text-xs">Built with <span class="text-cyan-400">❤</span> by Harshil Kholiya | Empowering People To Earn Online</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/countup.js@2.8.0"></script>
     <script type="module" src="/src/main.js"></script>
-  </body>
+</body>
 </html>
